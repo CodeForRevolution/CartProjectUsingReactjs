@@ -5,61 +5,38 @@ import "./index.css"
 
 
 class CartItem extends React.Component{
-
-    constructor(){
-        super();
-        this.state={
-            price:999,
-            qty:1,
-            tilte:"phone",
-            img:''
-        }
-    }
-
- increaseQuantity(){
     
-    this.state.qty=this.state.qty+1;
-    console.log("increase quantity called",this.state);
-   this.setState({
-    qty:this.state.qty
-   })
-    
- }
- decreaseQuantity(){
-    if(this.state.qty==1){
-       return; 
-    }
-    this.state.qty=this.state.qty-1;
-    this.setState({
-        qty:this.state.qty
-       })
- }
-    render(){
-const {price , qty, title, img}=this.state;//this is object di struturing because the this will get the object key and pair and make that variable whom we can use 
-//properly and directly
-     
-        return(
+
+  
+    render() {
+
+
+console.log("pro",this.props);
+   const {title,price,img,qty}=this.props.product;
+        return (
+        
             <div className="cart-item ">
+             
                 <div className="left-block">
-                    <img style={style.img} />
+                    <img style={style.img} src={img} />
                 </div>
 
                 <div className="right-block">
-                    <div>{this.state.tilte} {/*we are using directly without object distructuring*/}</div>
-                    <div>Rs {price} {/*this is using distructring so we dont have to write this.state.price*/}</div>
-                    <div>Qty {qty}</div>
+                    <div>{title}</div>
+                    <div>price:{price}</div>
+                    <div>Qty:{qty}</div>
 
                     <div className="cart-item-actions">
 
 
-                  <img src="https://cdn-icons-png.flaticon.com/512/3303/3303893.png" alt="increase" onClick={this.increaseQuantity.bind(this)}/>
-                  <img src="https://cdn-icons-png.flaticon.com/512/992/992683.png" alt="decrease" onClick={this.decreaseQuantity.bind(this)} />
-                  <img src="https://cdn-icons-png.flaticon.com/512/3096/3096687.png" alt="delete"/>
+                        <img src="https://cdn-icons-png.flaticon.com/512/3303/3303893.png" alt="increase" onClick={()=>this.props.increaseQuantity(this.props.product)}  />
+                        <img src="https://cdn-icons-png.flaticon.com/512/992/992683.png" alt="decrease" onClick={()=>this.props.decreaseQuantity(this.props.product)}  />
+                        <img src="https://cdn-icons-png.flaticon.com/512/3096/3096687.png" alt="delete" onClick={()=>this.props.delete(this.props.product.id)} />
 
                     </div>
                 </div>
-             
-              
+
+
             </div>
 
 
