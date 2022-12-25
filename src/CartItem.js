@@ -15,6 +15,25 @@ class CartItem extends React.Component{
             img:''
         }
     }
+
+ increaseQuantity(){
+    
+    this.state.qty=this.state.qty+1;
+    console.log("increase quantity called",this.state);
+   this.setState({
+    qty:this.state.qty
+   })
+    
+ }
+ decreaseQuantity(){
+    if(this.state.qty==1){
+       return; 
+    }
+    this.state.qty=this.state.qty-1;
+    this.setState({
+        qty:this.state.qty
+       })
+ }
     render(){
 const {price , qty, title, img}=this.state;//this is object di struturing because the this will get the object key and pair and make that variable whom we can use 
 //properly and directly
@@ -33,8 +52,8 @@ const {price , qty, title, img}=this.state;//this is object di struturing becaus
                     <div className="cart-item-actions">
 
 
-                  <img src="https://cdn-icons-png.flaticon.com/512/3303/3303893.png" alt="increase"/>
-                  <img src="https://cdn-icons-png.flaticon.com/512/992/992683.png" alt="decrease"/>
+                  <img src="https://cdn-icons-png.flaticon.com/512/3303/3303893.png" alt="increase" onClick={this.increaseQuantity.bind(this)}/>
+                  <img src="https://cdn-icons-png.flaticon.com/512/992/992683.png" alt="decrease" onClick={this.decreaseQuantity.bind(this)} />
                   <img src="https://cdn-icons-png.flaticon.com/512/3096/3096687.png" alt="delete"/>
 
                     </div>
